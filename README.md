@@ -43,9 +43,9 @@ Displays the following:
   | ZDA      | Year         | YYYY                          | 1994             |
   | ZDA      | TZ Hours     | Local timezone offset hours   | -05              |
   | ZDA      | TZ Minutes   | Local timezone offset minutes | 00               |
-  | GGA      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
-  | RMC      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
-  | RMC      | Date         | DDMMYY                        | 130694           |
+  |*GGA      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+  |*RMC      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+  |*RMC      | Date         | DDMMYY                        | 130694           |
   | GLL      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
 
   Note: ZDA is the most complete time sentence, providing full date with
