@@ -67,14 +67,11 @@ Displays the following:
 
   | Sentence | Field          | Units                    | Example  |
   |----------|----------------|--------------------------|----------|
-  | VTG      | Course (true)  | Degrees clockwise from true north    | 231.8 T
-  |
-  | VTG      | Course (magnetic) | Degrees clockwise from magnetic north | 229.3
-   M |
+  | VTG      | Course (true)  | Degrees clockwise from true north    | 231.8 T |
+  | VTG      | Course (magnetic) | Degrees clockwise from magnetic north | 229.3 M |
   | VTG      | Speed          | Knots                    | 173.8 N  |
   | VTG      | Speed          | Kilometers per hour      | 322.0 K  |
-  | RMC      | Course         | Degrees clockwise from true north    | 231.8
-  |
+  | RMC      | Course         | Degrees clockwise from true north    | 231.8 |
   | RMC      | Speed          | Knots                    | 173.8    |
 
   Note: VTG is the most complete source for speed and course as it provides both
