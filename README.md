@@ -30,10 +30,12 @@ Enter ctrl-z to exit.
 
 For example:
 
+```text
 /dev/cu.Bluetooth-Incoming-Port n/a
 /dev/cu.SoundcoreSpaceA40      n/a
 /dev/cu.debug-console          n/a
 /dev/cu.usbserial-1110         USB-Serial Controller D
+```
 
 ### Logging
 
