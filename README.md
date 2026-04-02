@@ -1,6 +1,7 @@
 # README.md
 
 GPS display application in Python created with Claude Code.
+
 Run with GlobalSat BU-353S4 via USB serial port.
 
 ## Running the Program
@@ -9,9 +10,23 @@ Run with GlobalSat BU-353S4 via USB serial port.
 python gps_display_nmea0183.py /dev/cu.usbserial-1110
 ```
 
+Enter ctrl-z to exit.
+
 ## Options
 
+### Input Port
+
 [p] Allows selection of input port.
+
+For example:
+
+/dev/cu.Bluetooth-Incoming-Port n/a
+/dev/cu.SoundcoreSpaceA40      n/a
+/dev/cu.debug-console          n/a
+/dev/cu.usbserial-1110         USB-Serial Controller D
+
+### Logging
+
 [l] toggles logging
 
 Displays the following:
@@ -108,6 +123,18 @@ These are Dilution of Precision values — they measure how much the geometry of
   PDOP is related by: PDOP² = HDOP² + VDOP²
 
 - Quality: overall quality of fix
+
+  | Score | Rating    | Satellites Used | Avg SNR     | HDOP      | Fix Type |
+  |-------|-----------|-----------------|-------------|-----------|----------|
+  | 16–20 | Excellent | 8+              | ≥45 dB-Hz   | ≤1.0      | 3D       |
+  | 11–15 | Good      | 6–7             | ≥35 dB-Hz   | 1.0–2.0   | 3D       |
+  | 7–10  | Fair      | 4–5             | ≥25 dB-Hz   | 2.0–5.0   | 2D or 3D |
+  | 1–6   | Poor      | <4              | <25 dB-Hz   | >5.0      | 2D       |
+  | 0     | No Fix    | 0               | —           | —         | None     |
+
+  Note: The score is a composite of four equally weighted factors — satellite
+  count, average SNR of active satellites, HDOP, and fix type — each
+  contributing up to 5 points for a maximum of 20.
 
 ## Bar Chart (lower left)
 
