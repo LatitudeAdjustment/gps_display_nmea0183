@@ -41,6 +41,9 @@ For example:
 
 [l] toggles logging
 
+Data is written to a file with the name gps_YYYYMMDD_hhmmss.nmea which is the
+start time for the application.
+
 ## Fix Data (upper left)
 
 Displays the following:
