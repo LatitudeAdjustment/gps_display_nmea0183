@@ -52,8 +52,7 @@ Displays the following:
   | GGA      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
   | GGA      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
   | GGA      | Altitude     | Meters above mean sea level   | 545.4 M        |
-  | GGA      | Geoid Sep    | Difference between ellipsoid and mean sea level |
-  46.9 M |
+  | GGA      | Geoid Sep    | Difference between ellipsoid and mean sea level | 46.9 M |
   | RMC      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
   | RMC      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
   | GLL      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
@@ -89,12 +88,9 @@ These are Dilution of Precision values — they measure how much the geometry of
 
   | Value | Name | Measures |
   |-------|------|----------|
-  | HDOP  | Horizontal Dilution of Precision | Accuracy in the horizontal plane
-  (latitude/longitude) |
-  | VDOP  | Vertical Dilution of Precision   | Accuracy in the vertical axis
-  (altitude)              |
-  | PDOP  | Position Dilution of Precision   | Overall 3D position accuracy
-  (combines HDOP and VDOP) |
+  | HDOP  | Horizontal Dilution of Precision | Accuracy in the horizontal plane (latitude/longitude) |
+  | VDOP  | Vertical Dilution of Precision   | Accuracy in the vertical axis (altitude)              |
+  | PDOP  | Position Dilution of Precision   | Overall 3D position accuracy (combines HDOP and VDOP) |
 
   How to read them:
 
