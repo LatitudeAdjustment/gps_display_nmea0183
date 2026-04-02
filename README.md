@@ -1,6 +1,7 @@
 # README.md
 
 GPS display application in Python created with Claude Code.
+Run with GlobalSat BU-353S4 via USB serial port.
 
 ## Running the Program
 
@@ -19,57 +20,92 @@ Displays the following:
 
 - Time and date (UTC)
 - Fix: GPS 3D or GPS 2D; Number of satellites used and in view
+
+⏺ From the GSA sentence, field 1 is the fix mode and field 2 is the fix type:
+
+  Fix type (GSA field 2):
+
+⏺ | Value | Fix Type |
+  |-------|----------|
+  | 1     | No fix   |
+  | 2     | 2D — latitude/longitude only (minimum 3 satellites) |
+  | 3     | 3D — latitude, longitude and altitude (minimum 4 satellites) |
+
+  Fix quality (GGA field 6):
+  
+  | Value | Fix Quality  | Description                          |
+  |-------|--------------|--------------------------------------|
+  | 0     | Invalid      | No fix                               |
+  | 1     | GPS          | Standard fix                         |
+  | 2     | DGPS         | Differential GPS, corrected fix      |
+  | 3     | PPS          | Military precise positioning         |
+  | 4     | RTK          | Real-time kinematic, centimeter accuracy |
+  | 5     | Float RTK    | RTK with floating ambiguity          |
+  | 6     | Estimated    | Dead reckoning                       |
+  | 7     | Manual       | Manual input                         |
+  | 8     | Simulation   | Simulation mode                      |
+
 - Latitude, Longitude, Altitude
+
+⏺ | Sentence | Field        | Format                        | Example        |
+  |----------|--------------|-------------------------------|----------------|
+  | GGA      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
+  | GGA      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
+  | GGA      | Altitude     | Meters above mean sea level   | 545.4 M        |
+  | GGA      | Geoid Sep    | Difference between ellipsoid and mean sea level |
+  46.9 M |
+  | RMC      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
+  | RMC      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
+  | GLL      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
+  | GLL      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
+
+  Note: Only GGA provides altitude. RMC and GLL provide position only. The raw
+  format DDMM.MMMM means degrees followed by decimal minutes — not decimal
+  degrees. For example 4807.038 is 48° 07.038' which converts to 48.1173°
+  decimal degrees.
+
 - Speed, Course
+
+⏺ | Sentence | Field          | Units                    | Example  |
+  |----------|----------------|--------------------------|----------|
+  | VTG      | Course (true)  | Degrees clockwise from true north    | 231.8 T
+  |
+  | VTG      | Course (magnetic) | Degrees clockwise from magnetic north | 229.3
+   M |
+  | VTG      | Speed          | Knots                    | 173.8 N  |
+  | VTG      | Speed          | Kilometers per hour      | 322.0 K  |
+  | RMC      | Course         | Degrees clockwise from true north    | 231.8
+  |
+  | RMC      | Speed          | Knots                    | 173.8    |
+
+  Note: VTG is the most complete source for speed and course as it provides both
+   true and magnetic course plus speed in two units. RMC provides speed in knots
+   and true course only. Magnetic variation (the difference between true and
+  magnetic north) varies by location and changes slowly over time.
+
 - HDOP, VDOP, PDOP (Dilution of Precision)
 These are Dilution of Precision values — they measure how much the geometry of
    the satellites in view amplifies GPS positioning errors. Lower is better.
 
-  ┌───────┬───────────────┬─────────────────────────────────────────────────┐
-  │ Value │     Name      │                    Measures                     │
-  ├───────┼───────────────┼─────────────────────────────────────────────────┤
-  │ HDOP  │ Horizontal    │ Accuracy in the horizontal plane                │
-  │       │ DOP           │ (latitude/longitude)                            │
-  ├───────┼───────────────┼─────────────────────────────────────────────────┤
-  │ VDOP  │ Vertical DOP  │ Accuracy in the vertical axis (altitude)        │
-  ├───────┼───────────────┼─────────────────────────────────────────────────┤
-  │ PDOP  │ Position DOP  │ Overall 3D position accuracy (combines H and V) │
-  └───────┴───────────────┴─────────────────────────────────────────────────┘
+⏺ | Value | Name | Measures |
+  |-------|------|----------|
+  | HDOP  | Horizontal Dilution of Precision | Accuracy in the horizontal plane
+  (latitude/longitude) |
+  | VDOP  | Vertical Dilution of Precision   | Accuracy in the vertical axis
+  (altitude)              |
+  | PDOP  | Position Dilution of Precision   | Overall 3D position accuracy
+  (combines HDOP and VDOP) |
 
   How to read them:
 
-  ┌───────┬────────────────────────────────┐
-  │ Value │             Rating             │
-  ├───────┼────────────────────────────────┤
-  │ 1     │ Ideal — best possible geometry │
-  ├───────┼────────────────────────────────┤
-  │ 1–2   │ Excellent                      │
-  ├───────┼────────────────────────────────┤
-  │ 2–5   │ Good                           │
-  ├───────┼────────────────────────────────┤
-  │ 5–10  │ Moderate — usable              │
-  ├───────┼────────────────────────────────┤
-  │ 10–20 │ Fair — use with caution        │
-  ├───────┼────────────────────────────────┤
-  │ >20   │ Poor — results unreliable      │
-  └───────┴────────────────────────────────┘
-
-⏺ ┌───────┬───────────┐
-  │ Value │  Rating   │
-  ├───────┼───────────┤                                                         
-  │ 1     │ Ideal     │
-  ├───────┼───────────┤                                                         
-  │ 1–2   │ Excellent │                                                         
-  ├───────┼───────────┤
-  │ 2–5   │ Good      │                                                         
-  ├───────┼───────────┤                                                         
-  │ 5–10  │ Moderate  │
-  ├───────┼───────────┤                                                         
-  │ 10–20 │ Fair      │                                                       
-  ├───────┼───────────┤
-  │ >20   │ Poor      │
-  └───────┴───────────┘
-
+⏺ | Value | Rating   |
+  |-------|----------|
+  | 1     | Ideal    |
+  | 1–2   | Excellent|
+  | 2–5   | Good     |
+  | 5–10  | Moderate |
+  | 10–20 | Fair     |
+  | >20   | Poor     |
 
   In practice, HDOP is the most useful for navigation since GPS altitude is
   always less accurate than horizontal position. VDOP is typically worse
@@ -129,3 +165,26 @@ Signal — Bar graph
 Satellite constellation, looking down, north up
 
 ## NMEA sentences (bottom)
+
+$GPGGA,180115.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*6A
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPGSV,3,1,12,06,74,284,23,19,74,018,30,17,55,085,23,22,42,168,37*74
+$GPGSV,3,2,12,11,33,246,17,03,26,044,30,12,21,315,22,50,00,000,*7B
+$GPGSV,3,3,12,25,65,254,,28,51,172,,24,08,271,,09,04,118,*78
+$GPRMC,180115.000,A,4104.4978,N,07326.7688,W,0.00,0.66,020426,,,A*70
+$GPGGA,180116.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*69
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPRMC,180116.000,A,4104.4978,N,07326.7688,W,0.00,0.66,020426,,,A*73
+$GPGGA,180117.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*68
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPRMC,180117.000,A,4104.4978,N,07326.7688,W,0.00,0.66,020426,,,A*72
+$GPGGA,180118.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*67
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPRMC,180118.000,A,4104.4978,N,07326.7688,W,0.00,0.66,020426,,,A*7D
+$GPGGA,180119.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*66
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPRMC,180119.000,A,4104.4978,N,07326.7688,W,0.00,0.66,020426,,,A*7C
+$GPGGA,180120.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*6C
+$GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
+$GPGSV,3,1,12,06,74,284,24,19,74,018,30,17,55,085,25,22,42,168,38*7A
+$GPGSV,3,2,12,11,33,246,17,03,26,044,30,12,21,315,23,50,00,000,*7A
