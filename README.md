@@ -22,6 +22,43 @@ Additional information at ~/Documents/BU-353S4.
 python gps_display_nmea0183.py /dev/cu.usbserial-1110
 ```
 
+### Python Environment Issue
+
+A Python environment is required to run the program or an error will occur.
+
+```bash
+$ python gps_display_nmea0183.py /dev/cu.usbserial-1110
+  File "gps_display_nmea0183.py", line 18
+SyntaxError: Non-ASCII character '\xe2' in file gps_display_nmea0183.py on line 18, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
+```
+
+### Set Up Environment
+
+A virtual environment for Python is required.
+Set up the virtual environment as follows (done previously):
+
+```bash
+$ python3 -m venv ~/serial-venv
+$ source ~/serial-venv/bin/activate
+$ pip install pyserial
+Requirement already satisfied: pyserial in /Users/username/serial-venv/lib/python3.14/site-packages (3.5)
+
+[notice] A new release of pip is available: 25.3 -> 26.0.1
+[notice] To update, run: pip install --upgrade pip
+```
+
+### Define Environment
+
+After setting up the environment, define it as follows prior to running the
+application:
+
+```bash
+source ~/serial-venv/bin/activate
+python gps_display_nmea0183.py /dev/cu.usbserial-1110
+```
+
+### Exit the Program
+
 Enter ctrl-z to exit.
 
 ## Options
