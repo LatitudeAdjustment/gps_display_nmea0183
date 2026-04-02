@@ -2,7 +2,17 @@
 
 GPS display application in Python created with Claude Code.
 
-Run with GlobalSat BU-353S4 via USB serial port.
+Reads NMEA 0183 data from GlobalSat BU-353S4 via USB serial port.
+
+## References
+
+<https://en.wikipedia.org/wiki/NMEA_0183>
+
+<https://actisense.com/wp-content/uploads/2020/01/NMEA-0183-Information-sheet-issue-4-1-1.pdf>
+
+<https://tronico.fi/OH6NT/docs/NMEA0183.pdf>
+
+Additional information at ~/Documents/BU-353S4.
 
 ## Running the Program
 
@@ -29,9 +39,9 @@ For example:
 
 [l] toggles logging
 
-Displays the following:
-
 ## Fix Data (upper left)
+
+Displays the following:
 
 - Time and date (UTC)
 
@@ -201,9 +211,12 @@ Signal — Bar graph
 
 ## Skyplot (right)
 
-Satellite constellation, looking down, north up
+Displays satellite constellation, looking down, north up.
+Each satellite has a number which corresponds to the bargraph.
 
 ## NMEA sentences (bottom)
+
+Displays each NMEA 0183 sentence as it is received.
 
 ```text
 $GPGGA,180115.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*6A
