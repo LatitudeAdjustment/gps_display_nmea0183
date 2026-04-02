@@ -34,6 +34,25 @@ Displays the following:
 ## Fix Data (upper left)
 
 - Time and date (UTC)
+
+  | Sentence | Field        | Format                        | Example          |
+  |----------|--------------|-------------------------------|------------------|
+  | ZDA      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+  | ZDA      | Day          | DD                            | 13               |
+  | ZDA      | Month        | MM                            | 06               |
+  | ZDA      | Year         | YYYY                          | 1994             |
+  | ZDA      | TZ Hours     | Local timezone offset hours   | -05              |
+  | ZDA      | TZ Minutes   | Local timezone offset minutes | 00               |
+  | GGA      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+  | RMC      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+  | RMC      | Date         | DDMMYY                        | 130694           |
+  | GLL      | Time (UTC)   | HHMMSS.ss                     | 123519.00        |
+
+  Note: ZDA is the most complete time sentence, providing full date with
+  four-digit year and timezone offset. RMC provides date but with only a
+  two-digit year. GGA and GLL provide time only with no date. All times are UTC
+  — convert to local time using the timezone offset from ZDA.
+
 - Fix: GPS 3D or GPS 2D; Number of satellites used and in view
 
   From the GSA sentence, field 1 is the fix mode and field 2 is the fix type:
@@ -186,6 +205,7 @@ Satellite constellation, looking down, north up
 
 ## NMEA sentences (bottom)
 
+```text
 $GPGGA,180115.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*6A
 $GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
 $GPGSV,3,1,12,06,74,284,23,19,74,018,30,17,55,085,23,22,42,168,37*74
@@ -208,3 +228,4 @@ $GPGGA,180120.000,4104.4978,N,07326.7688,W,1,07,1.2,6.1,M,-34.3,M,,0000*6C
 $GPGSA,M,3,06,19,17,22,11,03,12,,,,,,2.2,1.2,1.8*3C
 $GPGSV,3,1,12,06,74,284,24,19,74,018,30,17,55,085,25,22,42,168,38*7A
 $GPGSV,3,2,12,11,33,246,17,03,26,044,30,12,21,315,23,50,00,000,*7A
+```
