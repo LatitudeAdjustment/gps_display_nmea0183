@@ -21,11 +21,11 @@ Displays the following:
 - Time and date (UTC)
 - Fix: GPS 3D or GPS 2D; Number of satellites used and in view
 
-⏺ From the GSA sentence, field 1 is the fix mode and field 2 is the fix type:
+  From the GSA sentence, field 1 is the fix mode and field 2 is the fix type:
 
   Fix type (GSA field 2):
 
-⏺ | Value | Fix Type |
+  | Value | Fix Type |
   |-------|----------|
   | 1     | No fix   |
   | 2     | 2D — latitude/longitude only (minimum 3 satellites) |
@@ -47,7 +47,7 @@ Displays the following:
 
 - Latitude, Longitude, Altitude
 
-⏺ | Sentence | Field        | Format                        | Example        |
+  | Sentence | Field        | Format                        | Example        |
   |----------|--------------|-------------------------------|----------------|
   | GGA      | Latitude     | DDMM.MMMM, N/S                | 4807.038, N    |
   | GGA      | Longitude    | DDDMM.MMMM, E/W               | 01131.000, E   |
@@ -66,7 +66,7 @@ Displays the following:
 
 - Speed, Course
 
-⏺ | Sentence | Field          | Units                    | Example  |
+  | Sentence | Field          | Units                    | Example  |
   |----------|----------------|--------------------------|----------|
   | VTG      | Course (true)  | Degrees clockwise from true north    | 231.8 T
   |
@@ -87,7 +87,7 @@ Displays the following:
 These are Dilution of Precision values — they measure how much the geometry of
    the satellites in view amplifies GPS positioning errors. Lower is better.
 
-⏺ | Value | Name | Measures |
+  | Value | Name | Measures |
   |-------|------|----------|
   | HDOP  | Horizontal Dilution of Precision | Accuracy in the horizontal plane
   (latitude/longitude) |
@@ -98,7 +98,7 @@ These are Dilution of Precision values — they measure how much the geometry of
 
   How to read them:
 
-⏺ | Value | Rating   |
+  | Value | Rating   |
   |-------|----------|
   | 1     | Ideal    |
   | 1–2   | Excellent|
