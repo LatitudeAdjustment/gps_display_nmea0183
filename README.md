@@ -54,6 +54,23 @@ These are Dilution of Precision values — they measure how much the geometry of
   │ >20   │ Poor — results unreliable      │
   └───────┴────────────────────────────────┘
 
+⏺ ┌───────┬───────────┐
+  │ Value │  Rating   │
+  ├───────┼───────────┤                                                         
+  │ 1     │ Ideal     │
+  ├───────┼───────────┤                                                         
+  │ 1–2   │ Excellent │                                                         
+  ├───────┼───────────┤
+  │ 2–5   │ Good      │                                                         
+  ├───────┼───────────┤                                                         
+  │ 5–10  │ Moderate  │
+  ├───────┼───────────┤                                                         
+  │ 10–20 │ Fair      │                                                       
+  ├───────┼───────────┤
+  │ >20   │ Poor      │
+  └───────┴───────────┘
+
+
   In practice, HDOP is the most useful for navigation since GPS altitude is
   always less accurate than horizontal position. VDOP is typically worse
   (higher) than HDOP because all satellites are above you — there's nothing
