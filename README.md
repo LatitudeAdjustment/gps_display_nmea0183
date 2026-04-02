@@ -6,6 +6,8 @@ Reads NMEA 0183 data from GlobalSat BU-353S4 via USB serial port.
 
 ## References
 
+<https://www.globalsat.com.tw/en/a4-10593/BU-353S4.html>
+
 <https://en.wikipedia.org/wiki/NMEA_0183>
 
 <https://actisense.com/wp-content/uploads/2020/01/NMEA-0183-Information-sheet-issue-4-1-1.pdf>
